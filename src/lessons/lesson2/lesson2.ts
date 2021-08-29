@@ -175,6 +175,18 @@ function sunToTailRec(n: number, acc: number): number {
 console.log(sunToTailRec(100, 0));
 
 
+//Напишите функцию sum, которая работает таким образом: sum(a)(b) = a+b.
+
+function sumToNumbers(a: number) {
+    return function (b: number) {
+        return a + b
+    }
+}
+
+console.log(sumToNumbers(1)(2)) //3
+console.log(sumToNumbers(5)(-1)) //4
+
+
 // just a plug
 export default () => {
 };
