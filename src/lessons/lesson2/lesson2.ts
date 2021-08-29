@@ -110,7 +110,7 @@ console.log(superSum(3)(2, 5)(3, 9));
 // 5! = 5 * 4 * 3 * 2 * 1 = 120
 
 function factorial(n: number): number {
-    return (n != 1) ? n * factorial(n - 1) : 1;
+    return (n !== 1) ? n * factorial(n - 1) : 1;
 }
 
 console.log(factorial(5));
@@ -185,6 +185,30 @@ function sumToNumbers(a: number) {
 
 console.log(sumToNumbers(1)(2)) //3
 console.log(sumToNumbers(5)(-1)) //4
+
+
+let company = { // тот же самый объект, сжатый для краткости
+    sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 600}],
+    development: {
+        sites: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800}],
+        internals: [{name: 'Jack', salary: 1300}]
+    }
+};
+
+//@ts-ignore
+function sumSalaries(department) {
+    if (Array.isArray(department)) { // случай (1)
+        return department.reduce((prev, current) => prev + current.salary, 0); // сумма элементов массива
+    } else { // случай (2)
+        let sum = 0;
+        for (let subdep of Object.values(department)) {
+            sum += sumSalaries(subdep); // рекурсивно вызывается для подотделов, суммируя результаты
+        }
+        return sum;
+    }
+}
+
+console.log(sumSalaries(company));
 
 
 // just a plug

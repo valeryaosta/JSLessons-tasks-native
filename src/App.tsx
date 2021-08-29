@@ -14,7 +14,6 @@ function App() {
     return (
         <div className="container">
            {/* <Lesson1/>*/}
-
         </div>
     );
 }
